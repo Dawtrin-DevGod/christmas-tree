@@ -283,18 +283,12 @@ const PhotoOrnaments = ({
       const objData = data[i];
       let targetPos, targetScale;
 
-      // --- LOGIC HERO MODE (QUAN TRỌNG: SỬA LỖI VỊ TRÍ) ---
+      // --- LOGIC HERO MODE ---
       if (heroPhotoIndex === i) {
-        // Tạo một vector offset: nằm trước mặt camera 25 đơn vị (Z = -25 trong local space)
-        const offset = new THREE.Vector3(0, 0, -25);
-        // Xoay offset theo hướng camera đang nhìn
-        offset.applyQuaternion(camera.quaternion);
-        // Cộng vào vị trí hiện tại của camera
-        targetPos = camera.position.clone().add(offset);
-        
-        targetScale = 8; // Zoom to
-        
-        // Luôn xoay mặt ảnh về phía camera
+        const dir = new THREE.Vector3();
+        camera.getWorldDirection(dir);
+        targetPos = camera.position.clone().add(dir.multiplyScalar(25));
+        targetScale = 8;
         group.lookAt(camera.position); 
       } 
       // --- LOGIC BÌNH THƯỜNG ---
@@ -754,7 +748,7 @@ export default function GrandTreeApp() {
         </div>
       )}
 
-      {!heroPhotoIndex && (
+      {heroPhotoIndex === null && (
         <div style={{ position: 'absolute', top: '60px', left: '50%', transform: 'translateX(-50%)', color: 'rgba(255, 215, 0, 0.6)', fontSize: '11px', letterSpacing: '2px', zIndex: 10, background: 'rgba(0,0,0,0.5)', padding: '6px 12px', borderRadius: '6px', textAlign: 'center' }}>
           👌 PINCH (ngón cái + trỏ) bất kỳ lúc nào để xem ảnh
         </div>
