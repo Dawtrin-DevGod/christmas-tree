@@ -1,14 +1,65 @@
-/* src/index.css */
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
 body, html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #000000;
-  overflow: hidden; /* 彻底禁止滚动 */
+  background-color: #020202;
+  overflow: hidden;
+  font-family: 'Playfair Display', serif;
 }
 
 #root {
   width: 100vw;
   height: 100vh;
+}
+
+/* UI Panel kính mờ */
+.glass-panel {
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  transition: all 0.4s ease;
+}
+
+/* Text phát sáng */
+.glow-text {
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.cinzel-font {
+  font-family: 'Cinzel', serif;
+}
+
+/* Container Camera AI (Góc dưới) */
+.cam-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 280px;
+  height: 210px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  z-index: 100;
+  background: #000;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  color: #FFD700;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 4px;
 }
